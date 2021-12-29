@@ -16,40 +16,21 @@ const CardFooter = ({ dateUpdated }) => {
         'Nov',
         'Dec'
     ];
-    const date = new Date(dateUpdated * 100);
+    const date = new Date(dateUpdated);
     const month = date.getMonth();
     const day = date.getDay();
-    const year = date.getYear();
+    const year = date.getFullYear();
     const hour = date.getHours();
     const minute = date.getMinutes();
-
-    console.log(date);
+    let runningMonth = months[month - 1];
 
     return (
         <small className='card-footer'>
             Last updated: {
-                ` ${months.[month + 1]} ${day}, ${year} @ ${hour > 12 ? hour - 12 : hour}:${minute} ${hour <= 11 ? 'am' : 'pm'}`
+                ` ${runningMonth} ${day}, ${year} @ ${hour > 12 ? hour - 12 : hour}:${minute} ${hour <= 11 ? 'am' : 'pm'}`
             }
         </small>
     );
 };
 
 export default CardFooter;
-
-
-
-/* let unix_timestamp = 1549312452
-// Create a new JavaScript Date object based on the timestamp
-// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-var date = new Date(unix_timestamp * 1000);
-// Hours part from the timestamp
-var hours = date.getHours();
-// Minutes part from the timestamp
-var minutes = "0" + date.getMinutes();
-// Seconds part from the timestamp
-var seconds = "0" + date.getSeconds();
-
-// Will display time in 10:30:23 format
-var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-
-console.log(formattedTime); */
