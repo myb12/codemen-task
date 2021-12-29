@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import CommonCard from '../CommonCard/CommonCard';
-import './Home.css'
+import './Home.css';
+import { sampleData } from '../../data/sampleData';
 
 const Home = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        setData(sampleData);
+    }, [])
+
+    console.log(data);
     return (
         <div className='container'>
             <div className="home">
-                <CommonCard variant={'automated'} />
-                <CommonCard variant={'automated'} />
-                <CommonCard variant={'manual'} />
-                <CommonCard variant={'manual'} />
-                <CommonCard variant={'automated'} />
-                <CommonCard variant={'automated'} />
+                {
+                    data.map(each => <CommonCard key={each.id} data={each} />)
+                }
             </div>
         </div>
     );
