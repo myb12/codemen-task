@@ -2,20 +2,41 @@ import React, { useEffect, useState } from 'react';
 import CommonCard from '../CommonCard/CommonCard';
 import './Home.css';
 import { sampleData } from '../../data/sampleData';
+import SearchBar from '../shared/SearchBar/SearchBar';
 
 const Home = () => {
     const [data, setData] = useState([]);
+    const [renderData, setRenderData] = useState([]);
+    const [searchText, setSearchText] = useState('');
+    useEffect(() => {
+        if (searchText === '') return;
+        setRenderData(() =>
+            data.filter((item) =>
+                item.name.toLowerCase().match(searchText.toLowerCase())
+            )
+        );
+    }, [searchText, data]);
+    const handleChange = (e) => {
+        e.preventDefault();
+        setSearchText(e.target.value);
+        console.log(searchText);
+        if (!e.target.value.length > 0) {
+            setRenderData(data);
+        }
+    };
 
     useEffect(() => {
         setData(sampleData);
+        setRenderData(sampleData)
     }, [])
 
     console.log(data);
     return (
         <div className='container'>
+            <SearchBar handleChange={handleChange} />
             <div className="home">
                 {
-                    data.map(each => <CommonCard key={each.id} data={each} />)
+                    renderData.map(each => <CommonCard key={each.id} data={each} />)
                 }
             </div>
         </div>
