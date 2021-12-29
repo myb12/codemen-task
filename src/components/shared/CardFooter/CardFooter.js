@@ -28,7 +28,7 @@ const CardFooter = ({ dateUpdated }) => {
     return (
         <small className='card-footer'>
             Last updated: {
-                ` ${months.[month + 1]} ${day}, ${year} @ ${hour > 12 && hour - 12}:${minute} ${hour <= 11 ? 'am' : 'pm'}`
+                ` ${months.[month + 1]} ${day}, ${year} @ ${hour > 12 ? hour - 12 : hour}:${minute} ${hour <= 11 ? 'am' : 'pm'}`
             }
         </small>
     );
