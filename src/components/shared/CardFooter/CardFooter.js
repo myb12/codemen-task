@@ -1,5 +1,6 @@
 import React from 'react';
 import './CardFooter.css'
+
 const CardFooter = ({ dateUpdated }) => {
     const months = [
         'Jan',
@@ -21,11 +22,13 @@ const CardFooter = ({ dateUpdated }) => {
     const year = date.getYear();
     const hour = date.getHours();
     const minute = date.getMinutes();
-    console.log(month);
+
+    console.log(date);
+
     return (
         <small className='card-footer'>
             Last updated: {
-                ` ${months.[month + 1]} ${day}, ${year} @ ${hour}:${minute} ${hour <= 11 ? 'am' : 'pm'}`
+                ` ${months.[month + 1]} ${day}, ${year} @ ${hour > 12 && hour - 12}:${minute} ${hour <= 11 ? 'am' : 'pm'}`
             }
         </small>
     );
