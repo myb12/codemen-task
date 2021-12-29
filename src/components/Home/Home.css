@@ -1,5 +1,6 @@
 
 .container{
+    padding-top: 100px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -7,12 +8,28 @@
     display: grid;
     grid-template-columns: repeat(5,1fr);
     grid-gap: 20px; 
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-/*
-
-    @media only screen and (max-width:990px) {
-    container {
-       grid-template-columns: 1fr;
+@media only screen and (max-width:992px) {
+    .home {
+       grid-template-columns: repeat(4,1fr);
     }
-*/
+}
+@media only screen and (max-width:768px) {
+    .home {
+       grid-template-columns: repeat(3,1fr);
+    }
+}
+@media only screen and (max-width:600px) {
+    .home {
+       grid-template-columns: repeat(2,1fr);
+    }
+}
+@media only screen and (max-width:480px) {
+    .home {
+       grid-template-columns: 1fr;
+      justify-items: center;
+    }
+}
