@@ -8,6 +8,7 @@ const Home = () => {
     const [data, setData] = useState([]);
     const [renderData, setRenderData] = useState([]);
     const [searchText, setSearchText] = useState('');
+
     useEffect(() => {
         if (searchText === '') return;
         setRenderData(() =>
@@ -19,7 +20,7 @@ const Home = () => {
     const handleChange = (e) => {
         e.preventDefault();
         setSearchText(e.target.value);
-        console.log(searchText);
+
         if (!e.target.value.length > 0) {
             setRenderData(data);
         }
@@ -30,7 +31,6 @@ const Home = () => {
         setRenderData(sampleData)
     }, [])
 
-    console.log(data);
     return (
         <div className='container'>
             <SearchBar handleChange={handleChange} />
